@@ -10,6 +10,10 @@ public class ClosestPairSolver {
     public static long distanceChecks = 0;
 
     public double closestPair(Point[] points) {
+        if (points.length < 2) {
+            throw new IllegalArgumentException("Need at least 2 points");
+        }
+
         maxDepth = 0;
         distanceChecks = 0;
 

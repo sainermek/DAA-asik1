@@ -4,6 +4,9 @@ public class DeterministicSelector {
     public static int maxDepth = 0;
 
     public int select(int[] arr, int k) {
+        if (arr.length == 0 || k < 0 || k >= arr.length) {
+            throw new IllegalArgumentException("Invalid array or k");
+        }
         comparisons = 0;
         maxDepth = 0;
         return select(arr, 0, arr.length - 1, k, 0);
