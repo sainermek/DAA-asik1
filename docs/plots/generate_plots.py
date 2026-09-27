@@ -1,9 +1,13 @@
 import csv
+import os
 import matplotlib.pyplot as plt
 from collections import defaultdict
 
+base_dir = os.path.dirname(os.path.dirname(os.path.dirname(os.path.abspath(__file__))))
+csv_path = os.path.join(base_dir, "results", "results.csv")
+
 rows = []
-with open("../../results/results.csv") as f:
+with open(csv_path, encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
         rows.append(row)
@@ -27,7 +31,8 @@ plt.ylabel("time, ms")
 plt.title("Time vs n (random input)")
 plt.legend()
 plt.grid(True)
-plt.savefig("time_vs_n.png")
+plt.savefig(os.path.join(os.path.dirname(__file__), "time_vs_n.png"))
+plt.close()
 
 plt.figure()
 for algo in ["MergeSort", "QuickSort"]:
@@ -38,6 +43,7 @@ plt.ylabel("max recursion depth")
 plt.title("Recursion depth vs n (random input)")
 plt.legend()
 plt.grid(True)
-plt.savefig("depth_vs_n.png")
+plt.savefig(os.path.join(os.path.dirname(__file__), "depth_vs_n.png"))
+plt.close()
 
 print("Plots saved: time_vs_n.png, depth_vs_n.png")
